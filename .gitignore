@@ -1,12 +1,4 @@
 .DS_Store
-.venv/
 __pycache__/
 *.pyc
-data/raw/*
-data/processed/*
-outputs/charts/*
-outputs/tables/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!outputs/charts/.gitkeep
-!outputs/tables/.gitkeep
+.venv/
