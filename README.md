@@ -17,7 +17,7 @@ The broad NAICS view suggested moderate concentration, but the component-level a
 - **Printed circuits follow a different sourcing pattern.** China is the dominant supplier at about **34.7%**, followed by Taiwan and South Korea, showing that component risk varies across the electronics stack.
 - **Not all components carry the same level of sourcing risk.** In this basket, concentration ranges from **highly concentrated** for memory ICs to **unconcentrated** for amplifier ICs.
 
-![Dominant Supplier Country by Electronics Component](outputs/charts/dominant_supplier_country_by_component.png)
+![Dominant Supplier Country by Electronics Component](https://raw.githubusercontent.com/JustinJ-Lo/electronics-sourcing-risk-benchmark/main/outputs/charts/dominant_supplier_country_by_component.png)
 
 
 ## The Question
@@ -32,15 +32,16 @@ Where does the U.S. source semiconductors and electronic components from, how de
 
 **HHI (Herfindahl–Hirschman Index)** is a concentration measure: higher values mean sourcing is more dependent on fewer countries.
 
-![Concentration Trend](outputs/charts/concentration_trend.png)
+![Concentration Trend](https://raw.githubusercontent.com/JustinJ-Lo/electronics-sourcing-risk-benchmark/main/outputs/charts/concentration_trend.png)
 
 **Asian import prices dropped after 2022, but domestic producer prices kept rising.** The cost story shifted — what had been import-side pressure increasingly showed up in domestic production instead.
 
-![Price Trends](outputs/charts/price_index_trends_rebased.png)
+![Price Trends](https://raw.githubusercontent.com/JustinJ-Lo/electronics-sourcing-risk-benchmark/main/outputs/charts/price_index_trends_rebased.png)
+
 
 **Top sourcing countries remain concentrated in Asia-Pacific manufacturing hubs.** Taiwan, South Korea, Vietnam, Malaysia, and ASEAN-linked supplier regions continue to dominate the landscape, reinforcing how geographically concentrated semiconductor production still is.
 
-![Top Countries](outputs/charts/top_10_countries_latest_month.png)
+![Top Countries](https://raw.githubusercontent.com/JustinJ-Lo/electronics-sourcing-risk-benchmark/main/outputs/charts/top_10_countries_latest_month.png)
 
 ---
 
