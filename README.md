@@ -1,8 +1,24 @@
-# Electronics Component Sourcing Risk & Cost Pressure Benchmark
+# Country- and Component-Level Sourcing Risk Analysis for Electronics Components
 
 A side project I built to get closer to procurement analytics. I wanted something resume-worthy that used real public data and answered a question a supply chain team would actually care about.
 
 ---
+
+## Executive Summary
+
+This project analyzes U.S. sourcing concentration for semiconductor and electronics components using public Census trade data and component-level HS6 product codes.
+
+The broad NAICS view suggested moderate concentration, but the component-level analysis shows a much sharper pattern: several core electronics categories are dominated by a small number of supplier countries, with Taiwan emerging as the leading source for most integrated-circuit categories and China leading printed circuits.
+
+### Key Findings
+
+- **Memory integrated circuits are the most concentrated component in the basket.** Taiwan, South Korea, and Japan account for roughly **83.6%** of U.S. memory IC imports, and the category is highly concentrated by HHI.
+- **Processors/controllers are also heavily dependent on a narrow supplier base.** Taiwan alone supplies about **39.0%**, with Malaysia and Israel as the next largest sources.
+- **Printed circuits follow a different sourcing pattern.** China is the dominant supplier at about **34.7%**, followed by Taiwan and South Korea, showing that component risk varies across the electronics stack.
+- **Not all components carry the same level of sourcing risk.** In this basket, concentration ranges from **highly concentrated** for memory ICs to **unconcentrated** for amplifier ICs.
+
+![Dominant Supplier Country by Electronics Component](outputs/charts/dominant_supplier_country_by_component.png)
+
 
 ## The Question
 
@@ -46,6 +62,16 @@ Three scripts, run in order:
 3. `make_charts.py` — generates the charts
 
 ---
+
+## Latest Component Supplier Summary
+
+| HS6 Code | Component | Top Supplier | Top Supplier Share | Top 3 Supplier Share | Risk Band |
+|---|---|---:|---:|---:|---|
+| 854232 | Memory ICs | Taiwan | 40.7% | 83.6% | Highly concentrated |
+| 854231 | Processors / Controllers | Taiwan | 39.0% | 76.5% | Moderately concentrated |
+| 853400 | Printed Circuits | China | 34.7% | 64.2% | Moderately concentrated |
+| 854239 | Other ICs | Taiwan | 33.5% | 58.4% | Moderately concentrated |
+| 854233 | Amplifier ICs | Taiwan | 28.9% | 55.6% | Unconcentrated |
 
 ## Repo Structure
 

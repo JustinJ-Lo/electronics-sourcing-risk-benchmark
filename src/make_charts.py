@@ -11,32 +11,31 @@ CHART_DIR.mkdir(parents=True, exist_ok=True)
 TABLE_DIR.mkdir(parents=True, exist_ok=True)
 
 
-def load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
+def load_data() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     analytical = pd.read_csv(PROCESSED_DIR / "analytical_dataset.csv")
-    hhi = pd.read_csv(PROCESSED_DIR / "monthly_hhi.csv")
+    concentration = pd.read_csv(PROCESSED_DIR / "monthly_concentration_metrics.csv")
+    latest_exposure = pd.read_csv(PROCESSED_DIR / "latest_country_exposure.csv")
 
     analytical["month"] = pd.to_datetime(analytical["month"], errors="coerce")
-    hhi["month"] = pd.to_datetime(hhi["month"], errors="coerce")
+    concentration["month"] = pd.to_datetime(concentration["month"], errors="coerce")
+    latest_exposure["month"] = pd.to_datetime(latest_exposure["month"], errors="coerce")
 
-    return analytical, hhi
+    return analytical, concentration, latest_exposure
 
 
-def chart_top_countries_latest_month(analytical: pd.DataFrame) -> None:
-    latest_month = analytical["month"].max()
-    latest = analytical[analytical["month"] == latest_month].copy()
-
+def chart_top_countries_latest_month(latest_exposure: pd.DataFrame) -> None:
+    latest_month = latest_exposure["month"].max()
     top10 = (
-        latest.sort_values("import_value", ascending=False)
-        .loc[:, ["country", "import_value", "country_share"]]
+        latest_exposure.sort_values("country_share", ascending=False)
         .head(10)
-        .sort_values("import_value", ascending=True)
+        .sort_values("country_share", ascending=True)
     )
 
     top10.to_csv(TABLE_DIR / "top_10_countries_latest_month.csv", index=False)
 
     plt.figure(figsize=(10, 6))
-    plt.barh(top10["country"], top10["import_value"])
-    plt.xlabel("Import Value (USD)")
+    plt.barh(top10["country"], top10["country_share_pct"])
+    plt.xlabel("Share of U.S. Imports (%)")
     plt.ylabel("Country")
     plt.title(f"Top 10 Source Countries — {latest_month.strftime('%Y-%m')}")
     plt.tight_layout()
@@ -44,18 +43,20 @@ def chart_top_countries_latest_month(analytical: pd.DataFrame) -> None:
     plt.close()
 
 
-def chart_hhi_trend(hhi: pd.DataFrame) -> None:
+def chart_hhi_trend(concentration: pd.DataFrame) -> None:
     plt.figure(figsize=(10, 6))
-    plt.plot(hhi["month"], hhi["hhi"])
+    plt.plot(concentration["month"], concentration["hhi"], label="HHI")
+    plt.plot(concentration["month"], concentration["c5_share"], label="Top-5 Share")
     plt.xlabel("Month")
-    plt.ylabel("HHI")
-    plt.title("Sourcing Concentration (HHI) Over Time")
+    plt.ylabel("Concentration Metric")
+    plt.title("Sourcing Concentration Over Time")
+    plt.legend()
     plt.tight_layout()
-    plt.savefig(CHART_DIR / "hhi_trend.png", dpi=300)
+    plt.savefig(CHART_DIR / "concentration_trend.png", dpi=300)
     plt.close()
 
 
-def chart_price_indexes(analytical: pd.DataFrame) -> None:
+def chart_price_indexes_rebased(analytical: pd.DataFrame) -> None:
     price_cols = [
         "import_price_index_overall",
         "import_price_index_asian_nics",
@@ -67,33 +68,58 @@ def chart_price_indexes(analytical: pd.DataFrame) -> None:
         analytical[["month"] + price_cols]
         .drop_duplicates(subset=["month"])
         .sort_values("month")
+        .dropna()
     )
+
+    rebased = price_df.copy()
+    for col in price_cols:
+        rebased[col] = rebased[col] / rebased[col].iloc[0] * 100
 
     plt.figure(figsize=(10, 6))
     for col in price_cols:
-        plt.plot(price_df["month"], price_df[col], label=col)
+        plt.plot(rebased["month"], rebased[col], label=col)
 
     plt.xlabel("Month")
-    plt.ylabel("Index")
-    plt.title("Import and Domestic Price Index Trends")
+    plt.ylabel("Rebased Index (Start = 100)")
+    plt.title("Price Index Trends (Rebased for Comparability)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(CHART_DIR / "price_index_trends.png", dpi=300)
+    plt.savefig(CHART_DIR / "price_index_trends_rebased.png", dpi=300)
+    plt.close()
+
+
+def chart_latest_volatility(latest_exposure: pd.DataFrame) -> None:
+    top10 = (
+        latest_exposure.sort_values("country_share", ascending=False)
+        .head(10)
+        .sort_values("share_volatility_12m_pct", ascending=True)
+    )
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(top10["country"], top10["share_volatility_12m_pct"])
+    plt.xlabel("12-Month Share Volatility (percentage points)")
+    plt.ylabel("Country")
+    plt.title("Volatility of Sourcing Share — Top Countries")
+    plt.tight_layout()
+    plt.savefig(CHART_DIR / "top_country_share_volatility.png", dpi=300)
     plt.close()
 
 
 def main() -> None:
     print("Loading processed data...")
-    analytical, hhi = load_data()
+    analytical, concentration, latest_exposure = load_data()
 
     print("Making top-country chart...")
-    chart_top_countries_latest_month(analytical)
+    chart_top_countries_latest_month(latest_exposure)
 
-    print("Making HHI chart...")
-    chart_hhi_trend(hhi)
+    print("Making concentration chart...")
+    chart_hhi_trend(concentration)
 
-    print("Making price index chart...")
-    chart_price_indexes(analytical)
+    print("Making rebased price chart...")
+    chart_price_indexes_rebased(analytical)
+
+    print("Making volatility chart...")
+    chart_latest_volatility(latest_exposure)
 
     print("\nSaved charts to outputs/charts/")
     print("Saved summary table to outputs/tables/")
