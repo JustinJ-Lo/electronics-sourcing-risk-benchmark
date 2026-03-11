@@ -27,7 +27,7 @@ Broad industry-level concentration can look manageable. But the sharper HS6 comp
 - **Printed circuits follow a different sourcing pattern.** China is the dominant supplier at about 34.7%, followed by Taiwan and South Korea.
 - **Risk is not uniform across the electronics stack.** Some component categories are highly concentrated, while others are more diversified.
 
-![Dominant Supplier Country by Electronics Component](outputs/charts/component_dominant_supplier.png)
+![Dominant Supplier Country by Electronics Component](./outputs/charts/dominant_supplier_country_by_component.png)
 
 ---
 
@@ -57,19 +57,19 @@ HHI scores trend upward from 2023 through 2025. That does not automatically impl
 
 HHI (Herfindahl–Hirschman Index) is a concentration measure: higher values mean sourcing is more dependent on fewer countries.
 
-![Concentration Trend](outputs/charts/hhi_trend.png)
+![Concentration Trend](./outputs/charts/concentration_trend.png)
 
 ### 3) Price pressure shifted over time
 
 Asian import prices fell after 2022, while domestic producer prices continued rising. That suggests cost pressure increasingly shifted from the import side toward domestic production rather than disappearing altogether.
 
-![Price Trends](outputs/charts/price_trends.png)
+![Price Trends](./outputs/charts/price_index_trends_rebased.png)
 
 ### 4) Asia-Pacific manufacturing hubs still dominate the supplier landscape
 
 Taiwan, South Korea, Vietnam, Malaysia, and ASEAN-linked supplier regions remain central to the sourcing mix. Even where top-country shares differ by component, the broader geography remains concentrated in the Asia-Pacific electronics ecosystem.
 
-![Top Countries](outputs/charts/top_countries_latest.png)
+![Top Countries](./outputs/charts/top_10_countries_latest_month.png)
 
 ---
 
