@@ -94,6 +94,8 @@ If Taiwan share were to fall materially in a highly concentrated IC category, th
 
 That is the practical bridge from concentration analysis to sourcing action.
 
+![Scenario HHI Impact](./outputs/charts/scenario_hhi_impact.png)
+
 ---
 
 ## Data Sources
