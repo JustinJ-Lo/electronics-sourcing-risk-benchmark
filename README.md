@@ -6,17 +6,25 @@ A side project I built to get closer to procurement analytics. I wanted somethin
 
 ## The Question
 
-Where does the U.S. source semiconductors and electronic components from, how dependent are we on a handful of countries, and has that gotten better or worse?
+Where does the U.S. source semiconductors and electronic components from, how dependent is it on a handful of countries, and has that concentration gotten better or worse over time?
 
 ---
 
 ## What I Found
 
-**Concentration has been creeping up.** HHI scores trend upward from 2023 through 2025 — not alarming, but the direction matters. Fewer countries are quietly absorbing more of the sourcing share.
+**Concentration has been creeping up.** HHI scores trend upward from 2023 through 2025 — not alarming, but directionally important. Fewer countries are quietly absorbing more of the sourcing share.
 
-**Asian import prices dropped after 2022, but domestic producer prices kept rising.** The cost story shifted — what used to be pressure from import markets started showing up in domestic production instead.
+**HHI (Herfindahl–Hirschman Index)** is a concentration measure: higher values mean sourcing is more dependent on fewer countries.
 
-**The top sourcing countries are exactly who you'd expect:** Taiwan, South Korea, Vietnam, Malaysia, and other ASEAN countries. The Asia-Pacific grip on semiconductor manufacturing is still very much intact.
+![HHI Trend](outputs/charts/hhi_trend.png)
+
+**Asian import prices dropped after 2022, but domestic producer prices kept rising.** The cost story shifted — what had been import-side pressure increasingly showed up in domestic production instead.
+
+![Price Trends](outputs/charts/price_index_trends.png)
+
+**Top sourcing countries remain concentrated in Asia-Pacific manufacturing hubs.** Taiwan, South Korea, Vietnam, Malaysia, and ASEAN-linked supplier regions continue to dominate the landscape, reinforcing how geographically concentrated semiconductor production still is.
+
+![Top Countries](outputs/charts/top_10_countries_latest_month.png)
 
 ---
 
@@ -33,14 +41,15 @@ All public data, all reproducible.
 
 Three scripts, run in order:
 
-1. `fetch_data.py` — pulls Census and FRED data
-2. `build_dataset.py` — computes country shares, 3-month moving averages, HHI
+1. `fetch_data.py` — pulls Census and FRED data  
+2. `build_dataset.py` — computes country shares, 3-month moving averages, and HHI  
 3. `make_charts.py` — generates the charts
 
 ---
 
 ## Repo Structure
-```
+
+```text
 electronics-sourcing-risk-benchmark/
 ├── README.md
 ├── requirements.txt
@@ -54,10 +63,3 @@ electronics-sourcing-risk-benchmark/
     ├── fetch_data.py
     ├── build_dataset.py
     └── make_charts.py
-```
-
----
-
-## Resume Bullet
-
-Built a procurement-focused benchmarking analysis using U.S. Census trade data and BLS price indexes to measure semiconductor sourcing concentration and regional cost pressure — quantifying HHI risk trends and supplier-region price divergence using Python.
