@@ -32,11 +32,11 @@ Where does the U.S. source semiconductors and electronic components from, how de
 
 **HHI (Herfindahl–Hirschman Index)** is a concentration measure: higher values mean sourcing is more dependent on fewer countries.
 
-![HHI Trend](outputs/charts/hhi_trend.png)
+![Concentration Trend](outputs/charts/concentration_trend.png)
 
 **Asian import prices dropped after 2022, but domestic producer prices kept rising.** The cost story shifted — what had been import-side pressure increasingly showed up in domestic production instead.
 
-![Price Trends](outputs/charts/price_index_trends.png)
+![Price Trends](outputs/charts/price_index_trends_rebased.png)
 
 **Top sourcing countries remain concentrated in Asia-Pacific manufacturing hubs.** Taiwan, South Korea, Vietnam, Malaysia, and ASEAN-linked supplier regions continue to dominate the landscape, reinforcing how geographically concentrated semiconductor production still is.
 
