@@ -31,7 +31,7 @@ df["total_landed_cost"] = (
     + df["shipping_cost"]
     + df["tariff_cost"]
     + df["risk_premium"]
-)
+).round(2)
 
 # ---------------------------------------
 # Sort by cheapest sourcing option
