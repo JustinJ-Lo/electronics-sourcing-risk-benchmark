@@ -96,6 +96,14 @@ That is the practical bridge from concentration analysis to sourcing action.
 
 ![Scenario HHI Impact](./outputs/charts/scenario_hhi_impact.png)
 
+### Illustrative cost vs. risk tradeoff
+
+To extend the project from concentration analysis into procurement decision-making, I added a simple landed-cost scenario model comparing supplier countries across unit cost, shipping, tariffs, and a risk premium. This is not a supplier quote model; it is an illustrative framework for thinking about sourcing tradeoffs.
+
+![Cost vs. Risk Tradeoff](./outputs/charts/cost_vs_risk_tradeoff.png)
+
+A procurement team would generally prefer options closer to the lower-left of the chart: lower total landed cost with lower sourcing risk. The point is not that one country is always “best,” but that sourcing decisions involve balancing cost efficiency against concentration and disruption exposure.
+
 ---
 
 ## Data Sources
