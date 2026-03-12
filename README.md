@@ -33,9 +33,7 @@ Broad industry-level concentration can look manageable. But the sharper HS6 comp
 
 ## Why I Built This
 
-I wanted to build a project that looked more like a real procurement analytics question than a generic student data project. For a manufacturing or robotics company, the issue is not just total electronics exposure — it is whether specific component families depend too heavily on a small set of countries or regions.
-
-That makes this a sourcing-risk question, not just a trade-data exercise.
+I wanted to build a project that looked more like a real procurement analytics question than a generic student data project. For a manufacturing or robotics company, the issue is not just total electronics exposure, but it is whether specific component families depend too heavily on a small set of countries or regions.
 
 ---
 
@@ -88,6 +86,16 @@ This project does **not** claim to solve supplier selection or total landed cost
 ### Finding 3: Different component families have different country-risk profiles
 **Why it matters:** Printed circuits and integrated circuits do not show the same sourcing pattern, so “electronics risk” cannot be treated as one uniform category.  
 **Decision question:** Should category strategies be segmented by component family rather than managed under one broad electronics sourcing assumption?
+
+### Example disruption scenario: Taiwan semiconductor shock
+
+To translate supplier concentration into operational risk, I simulated a disruption scenario where Taiwan semiconductor exports fall by 50% for HS6 memory ICs (854232) using the most recent month of trade data.
+
+Taiwan currently supplies roughly 40% of U.S. memory IC imports. A 50% reduction in Taiwan exports therefore removes about 20% of available supply in the short run, assuming other suppliers cannot immediately replace that volume.
+
+This simple scenario highlights how concentrated supplier structures can create disproportionate disruption exposure even when the broader electronics supply chain appears diversified.
+
+![Memory IC Supply Exposure Under Taiwan Shock](./outputs/charts/taiwan_shock_memory_ics.png)
 
 ### Simple scenario lens
 If Taiwan share were to fall materially in a highly concentrated IC category, the key procurement issue would not just be replacement volume. It would be whether alternate countries or suppliers are already qualified, commercially viable, and operationally scalable.
