@@ -97,6 +97,14 @@ This simple scenario highlights how concentrated supplier structures can create 
 
 ![Memory IC Supply Exposure Under Taiwan Shock](./outputs/charts/taiwan_shock_memory_ics.png)
 
+### Who could replace Taiwan supply?
+
+The dashed line shows the amount of supply lost under the Taiwan disruption scenario. The bars represent the current supplier shares of other countries, illustrating how multiple suppliers would likely need to expand production to replace Taiwan's lost volume. 
+
+This comparison uses current supplier shares as a proxy for potential replacement capacity. In reality, replacing Taiwan supply would depend on whether existing producers could expand fabrication capacity, redirect exports, or whether firms could qualify alternate suppliers.
+
+![Potential Replacement Capacity](./outputs/charts/taiwan_supply_replacement_capacity.png)
+
 ### Simple scenario lens
 If Taiwan share were to fall materially in a highly concentrated IC category, the key procurement issue would not just be replacement volume. It would be whether alternate countries or suppliers are already qualified, commercially viable, and operationally scalable.
 

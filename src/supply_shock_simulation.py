@@ -67,3 +67,58 @@ for bar in bars:
 
 plt.savefig("outputs/charts/taiwan_shock_memory_ics.png", dpi=300, bbox_inches="tight")
 plt.close()
+
+# -------------------------------
+# Replacement capacity analysis
+# -------------------------------
+
+lost_supply = supply_loss
+
+# remove Taiwan from the table
+replacement_df = component_df[~taiwan_mask].copy()
+
+replacement_df = replacement_df.sort_values(
+    "country_share", ascending=False
+).head(6)
+
+replacement_df = replacement_df.sort_values("country_share")
+
+plt.figure(figsize=(8,5))
+
+bars = plt.barh(
+    replacement_df["country"],
+    replacement_df["country_share"],
+    color="steelblue"
+)
+
+for bar in bars:
+    width = bar.get_width()
+    plt.text(
+        width + 0.002,
+        bar.get_y() + bar.get_height()/2,
+        f"{width:.1%}",
+        va="center"
+    )
+
+plt.axvline(
+    lost_supply,
+    color="firebrick",
+    linestyle="--",
+    label="Taiwan supply loss"
+)
+
+plt.xlabel("Current Supplier Share")
+plt.title("Potential Replacement Capacity for Taiwan Supply Shock")
+
+from matplotlib.ticker import PercentFormatter
+plt.gca().xaxis.set_major_formatter(PercentFormatter(1.0))
+
+plt.legend()
+
+plt.savefig(
+    "outputs/charts/taiwan_supply_replacement_capacity.png",
+    dpi=300,
+    bbox_inches="tight"
+)
+
+plt.close()
