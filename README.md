@@ -1,14 +1,16 @@
 # Sourcing Risk Analysis for Electronics Components
 
-A procurement-focused side project I built to understand how concentrated U.S. electronics sourcing actually is — not at the broad industry level, but at the component level, where the real exposure tends to hide.
+This is a side project I built because I wanted to better understand how concentrated U.S. electronics sourcing really is at the component level.
 
-The motivation was straightforward: I'm interested in procurement analytics and global manufacturing, especially East Asian supplier ecosystems relevant to electronics, robotics, and supply chains. I wanted to build something that looked like a real procurement question rather than a generic data project.
+I'm interested in procurement analytics, supply chains, and East Asian manufacturing networks, especially in industries like electronics and robotics. A lot of the time, sourcing risk gets discussed at a broad industry level, but I wanted to look at the actual component categories where dependence might be much higher.
 
 ---
 
 ## The Short Version
 
-Broad industry-level concentration can look manageable. The HS6 component view tells a more useful story. Several core electronics categories depend heavily on a small number of countries. For example, Taiwan dominates multiple integrated-circuit categories, China leads printed circuits, and that concentration has been creeping upward.
+Looking only at the broad industry level can make sourcing concentration seem more manageable than it really is. Once I broke the data down to the HS6 component level, a clearer pattern showed up: some important electronics categories depend heavily on just a few countries.
+
+For example, Taiwan plays a major role in several integrated-circuit categories, China is a leading supplier in printed circuits, and concentration in some of these categories has been rising over time.
 
 ### Component Supplier Summary
 
@@ -26,25 +28,25 @@ Broad industry-level concentration can look manageable. The HS6 component view t
 
 ## What I Found
 
-### The aggregate view smooths over the parts that matter
+### Broad industry averages hide some of the real risk
 
-At the NAICS 3344 level, concentration looks only moderate. But that's exactly the problem. Broad categories average out the component families procurement teams actually worry about. The HS6 analysis surfaces sharper concentration in memory ICs and processors than the top-line numbers suggest.
+At the NAICS 3344 level, concentration looks only moderate. But when I looked at specific component categories, the picture became more uneven. Memory ICs and processors look much more concentrated than the broader industry numbers would suggest.
 
-### Concentration has been drifting upward
+### Concentration has generally been moving upward
 
-HHI scores trend upward from 2023 through 2025. That doesn't mean a sourcing crisis is coming, but it does mean imports are becoming more dependent on fewer countries over time, not less.
+From 2023 through 2025, HHI trends upward in the data. I would not interpret that as proof of an immediate sourcing crisis, but it does suggest that dependence on a smaller set of countries has been increasing rather than decreasing.
 
 ![Concentration Trend](./outputs/charts/concentration_trend.png)
 
-### Price pressure shifted, it didn't disappear
+### Price pressure changed form rather than disappearing
 
-After 2022, Asian import prices fell while domestic producer prices kept rising. The cost pressure moved from the import side toward domestic production rather than resolving.
+After 2022, Asian import prices came down, but domestic producer prices stayed elevated. To me, that suggests the cost pressure did not really go away. It just shifted.
 
 ![Price Trends](./outputs/charts/price_index_trends_rebased.png)
 
-### The geography is still firmly Asia-Pacific
+### The supplier base is still heavily concentrated in Asia-Pacific
 
-Taiwan, South Korea, Vietnam, Malaysia, and neighboring ASEAN suppliers dominate across all the categories I looked at. The specific country shares vary by component, but the regional concentration is consistent throughout.
+Taiwan, South Korea, Vietnam, Malaysia, and nearby suppliers show up repeatedly across the categories I looked at. The exact shares vary by product, but the regional pattern is pretty consistent.
 
 ![Top Countries](./outputs/charts/top_10_countries_latest_month.png)
 
@@ -52,21 +54,23 @@ Taiwan, South Korea, Vietnam, Malaysia, and neighboring ASEAN suppliers dominate
 
 ## What This Means for Sourcing
 
-This project doesn't try to solve supplier selection or total landed cost. It's more about identifying where concentration is high enough to warrant a closer look.
+I do not see this project as a full sourcing decision model. It is more of a way to flag where concentration looks high enough that a procurement team might want to look more closely.
 
-**HS6-level risk is sharper than the aggregate suggests.** A company might look reasonably diversified at the industry level while still being exposed in a few specific component families. The question is which categories deserve second-source review or supplier mapping.
+**HS6-level concentration can be much sharper than aggregate numbers suggest.** A company might seem reasonably diversified at the industry level while still being very exposed in a few key components.
 
-**Memory ICs and processors are the most exposed.** Heavy dependence in these categories means a shock to a small number of countries — trade restrictions, a fabrication bottleneck, a geopolitical event — creates outsized disruption risk.
+**Memory ICs and processors look like the most exposed categories in this sample.** If a disruption affects one of the dominant supplier countries, the impact could be much larger in these categories than in others.
 
-**Printed circuits and ICs don't follow the same pattern.** Electronics sourcing isn't one uniform risk. Category strategies probably need to reflect that.
+**Different components have different risk profiles.** That was one of the more interesting takeaways for me. Electronics sourcing does not look uniform across categories, so sourcing strategy probably should not be uniform either.
 
 ### Taiwan Disruption Scenario
 
-To make the concentration numbers more tangible, I modeled a scenario where Taiwan semiconductor exports drop 50% for memory ICs (HS6 854232). Taiwan currently supplies roughly 40% of U.S. memory IC imports, so a 50% cut removes about 20% of available supply in the short run, assuming other suppliers can't immediately step in.
+To make the concentration numbers more concrete, I modeled a simple scenario where Taiwan's semiconductor exports for memory ICs (HS6 854232) fall by 50%.
+
+Since Taiwan currently supplies about 40% of U.S. memory IC imports in the data, a 50% reduction would remove about 20% of available supply in the short run, assuming other suppliers could not immediately replace it.
 
 ![Memory IC Supply Exposure Under Taiwan Shock](./outputs/charts/taiwan_shock_memory_ics.png)
 
-The chart below shows how much supply would need to come from elsewhere, and what current supplier shares look like as a rough proxy for replacement capacity. In practice, this would depend on whether existing producers could scale fabrication, redirect exports, or whether alternate suppliers could be qualified in time.
+The chart below looks at how much supply would need to be replaced and uses current supplier shares as a rough proxy for replacement capacity. This is obviously simplified, since in real life substitution would depend on fabrication capacity, qualification timelines, contracts, and how quickly suppliers could redirect shipments.
 
 ![Potential Replacement Capacity](./outputs/charts/taiwan_supply_replacement_capacity.png)
 
@@ -74,7 +78,9 @@ The chart below shows how much supply would need to come from elsewhere, and wha
 
 ### Cost vs. Risk Tradeoff
 
-I also added a simple landed-cost scenario comparing supplier countries across unit cost, shipping, tariffs, and a risk premium. It's illustrative, not a quote model. However, it frames the practical tradeoff: lower-left on the chart means lower cost and lower risk, which is obviously preferable. The point is that sourcing decisions involve balancing cost efficiency against concentration exposure, and those two things don't always point the same direction.
+I also added a simple landed-cost scenario comparing supplier countries across unit cost, shipping, tariffs, and a basic risk premium.
+
+This is not meant to be a real quote model. I included it more as a way to show the tradeoff: the cheapest supplier is not always the lowest-risk supplier, and sourcing decisions usually involve balancing both.
 
 ![Cost vs. Risk Tradeoff](./outputs/charts/cost_vs_risk_tradeoff.png)
 
@@ -84,34 +90,43 @@ I also added a simple landed-cost scenario comparing supplier countries across u
 
 - **U.S. Census International Trade API** — monthly imports by country, NAICS 3344
 - **U.S. Census International Trade API** — HS6 component-level trade flows for selected electronics categories
-- **FRED / BLS** — import price indexes (Asian NICs, industrialized countries) and domestic producer price index
+- **FRED / BLS** — import price indexes and domestic producer price index series
 
-Everything is public and the workflow is fully reproducible.
+Everything in this project uses public data, and the workflow can be reproduced from the scripts in the repo.
 
 ---
 
 ## How the Pipeline Works
 
-The project runs as an end-to-end analytics pipeline:
+The project can be run end to end with:
 
 ```bash
 python3 src/run_pipeline.py
 ```
 
-Three scripts, in order:
+The pipeline includes data collection, dataset construction, scenario analysis, clustering, and chart generation.
 
-1. `fetch_data.py` — pulls Census and FRED data via API
-2. `build_dataset.py` — computes country shares, HHIs, and moving averages
-3. `make_charts.py` — generates charts and summary tables
+Main scripts:
 
-The pipeline also clusters components into four risk segments using `hhi`, `c3_share`, and `supplier_count`:
+- `fetch_data.py`
+- `fetch_fred_api.py`
+- `fetch_hs_components.py`
+- `build_dataset.py`
+- `analyze_hs_components.py`
+- `scenario_analysis.py`
+- `supply_shock_simulation.py`
+- `supplier_cost_model.py`
+- `cluster_component_risk.py`
+- `make_charts.py`
+
+I also added a simple clustering step using `hhi`, `c3_share`, and `supplier_count` to group components into four risk segments:
 
 - Lower concentration / broad supplier base
 - Lower concentration / moderate breadth
 - Elevated concentration
 - Highest concentration / dominant suppliers
 
-This segmentation is for prioritization and monitoring,identifying which categories might deserve more procurement attention, not predicting what will happen.
+I used this more as a monitoring and prioritization tool than as a predictive model.
 
 ---
 
@@ -122,6 +137,9 @@ electronics-sourcing-risk-benchmark/
 ├── README.md
 ├── FINDINGS.md
 ├── requirements.txt
+├── .github/
+│   └── workflows/
+│       └── monthly_refresh.yml
 ├── data/
 │   ├── raw/
 │   └── processed/
@@ -130,6 +148,14 @@ electronics-sourcing-risk-benchmark/
 │   └── tables/
 └── src/
     ├── fetch_data.py
+    ├── fetch_fred_api.py
+    ├── fetch_hs_components.py
     ├── build_dataset.py
-    └── make_charts.py
+    ├── analyze_hs_components.py
+    ├── scenario_analysis.py
+    ├── supply_shock_simulation.py
+    ├── supplier_cost_model.py
+    ├── cluster_component_risk.py
+    ├── make_charts.py
+    └── run_pipeline.py
 ```
