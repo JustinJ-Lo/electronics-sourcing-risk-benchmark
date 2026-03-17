@@ -6,11 +6,25 @@ I'm interested in procurement analytics, supply chains, and East Asian manufactu
 
 ---
 
+## Supply Chain Risk Dashboard
+
+### Key Insight
+Supply chain risk is concentrated in memory and processor components; Taiwan shocks reduce concentration but introduce cost–risk trade-offs across sourcing decisions.
+
+![Supply Chain Dashboard](dashboard.png)
+
+### What This Dashboard Shows
+- Memory ICs and processors exhibit high supplier concentration (Top 3 > 75%)
+- Taiwan disruption reduces concentration (ΔHHI ≈ -0.04)
+- ASEAN and Korea disruptions increase concentration, indicating fragility
+- Diversification shifts sourcing toward moderately higher-cost suppliers
+
 ## The Short Version
 
 Looking only at the broad industry level can make sourcing concentration seem more manageable than it really is. Once I broke the data down to the HS6 component level, a clearer pattern showed up: some important electronics categories depend heavily on just a few countries.
 
 For example, Taiwan plays a major role in several integrated-circuit categories, China is a leading supplier in printed circuits, and concentration in some of these categories has been rising over time.
+
 
 ### Component Supplier Summary
 
@@ -98,8 +112,7 @@ Everything in this project uses public data, and the workflow can be reproduced 
 
 ## How the Pipeline Works
 
-The project can be run end to end with:
-
+The project can be run end-to-end with:
 ```bash
 python3 src/run_pipeline.py
 ```
@@ -131,7 +144,6 @@ I used this more as a monitoring and prioritization tool than as a predictive mo
 ---
 
 ## Repo Structure
-
 ```
 electronics-sourcing-risk-benchmark/
 ├── README.md
